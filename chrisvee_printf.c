@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "main.h"
+#include "string.h"
 
 /**
  * _printf - a function that displays output according to a format.
@@ -10,12 +11,12 @@
 int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
-	char new_char;
+	char new_char, st;
 	va_list argu;
 
 
 	if (format == NULL)
-		return (Error);
+		return (-1);
 
 	va_start(argu, format);
 	while (*format != '\0')
@@ -31,9 +32,9 @@ int _printf(const char *format, ...)
 					chars_displayed += write_char(x);
 					break;
 				case 's':
-					char st = va_arg(argu, char);
+					char st = va_arg(argu, int);
 
-					chars_displayed += fwrite(s, 1, strlen(s), stdout);
+					chars_displayed += fwrite(char, 1, strlen(st), stdout);
 					break;
 				case '%':
 					chars_displayed += write_char('%');
