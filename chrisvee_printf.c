@@ -9,13 +9,10 @@
 int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
-	char arg, new_char, *st;
-	char present;
-
+	char present, arg, new_char, *st;
 	va_list argu;
 
 	va_start(argu, format);
-
 	while ((present = *format++) != '\0')
 	{
 		if (new_char != '\0')
@@ -37,7 +34,6 @@ int _printf(const char *format, ...)
 					st = va_arg(argu, char*);
 					while (*st != '\0')
 					{
-						_putchar(*st++);
 						chars_displayed++;
 					}
 					break;
