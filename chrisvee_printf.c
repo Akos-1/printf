@@ -13,6 +13,9 @@ int _printf(const char *format, ...)
 	char present, arg, new_char, *st;
 	va_list argu;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(argu, format);
 	while ((present = *format++) != '\0')
 	{
@@ -24,8 +27,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			new_char = *format++;
-
-			if (new_char == 'c')
+			if (new_char  == 'c')
 			{
 				arg = (char)va_arg(argu, int);
 				write_char(arg);
