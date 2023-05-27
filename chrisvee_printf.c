@@ -26,19 +26,19 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					arg = (char)va_arg(argu, int);
-					our_putchar(arg);
+					putchar(arg);
 					chars_displayed++;
 					break;
 				case 's':
 					st = va_arg(argu, char*);
 					while (*st != '\0')
 					{
-						our_putchar(*st++);
+						putchar(*st++);
 						chars_displayed++;
 					}
 					break;
 				case '%':
-					_putchar('%');
+					putchar('%');
 					chars_displayed++;
 					break;
 				default:
