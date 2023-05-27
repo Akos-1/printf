@@ -10,44 +10,41 @@
 int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
-	char present, arg, new_char, *st;
+	char new_char;
 	va_list argu;
 
+
 	if (format == NULL)
-		return (-1);
+		return (Error);
 
 	va_start(argu, format);
-	while ((present = *format++) != '\0')
+	while (*format != '\0')
 	{
-		if (new_char != '\0')
-		{
-			write_char(present);
-			chars_displayed++;
-		}
-		else
+		if (*format == '%')
 		{
 			new_char = *format++;
-			if (new_char  == 'c')
+			switch (new_char)
 			{
-				arg = (char)va_arg(argu, int);
-				write_char(arg);
-				chars_displayed++;
+				case 'c':
+					int x = va_arg(argu, int);
+
+					chars_displayed += write_char(x);
+					break;
+				case 's':
+					char st = va_arg(argu, char);
+
+					chars_displayed += fwrite(s, 1, strlen(s), stdout);
+					break;
+				case '%':
+					chars_displayed += write_char('%');
+					break;
 			}
-			else if (new_char == 's')
+			else
 			{
-				st = va_arg(argu, char*);
-				while (*st != '\0')
-				{
-					write_char(*st++);
-					chars_displayed++;
-				}
-			}
-			else if (new_char == '%')
-			{
-				write_char('%');
-				chars_displayed++;
+				chars_displayed += write_char(*format);
 			}
 		}
+		format++;
 	}
 	va_end(argu);
 	return (chars_displayed);
