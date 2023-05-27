@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 	{
 		if (new_char != '\0')
 		{
-			_putchar(present);
+			write_char(present);
 			chars_displayed++;
 		}
 		else
@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			if (new_char == 'c')
 			{
 				arg = (char)va_arg(argu, int);
-				_putchar(arg);
+				write_char(arg);
 				chars_displayed++;
 			}
 			else if (new_char == 's')
@@ -36,13 +36,13 @@ int _printf(const char *format, ...)
 				st = va_arg(argu, char*);
 				while (*st != '\0')
 				{
-					_putchar(*st++);
+					write_char(*st++);
 					chars_displayed++;
 				}
 			}
 			else if (new_char == '%')
 			{
-				_putchar('%');
+				write_char('%');
 				chars_displayed++;
 			}
 		}
