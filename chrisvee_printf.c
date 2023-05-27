@@ -16,8 +16,9 @@ int _printf(const char *format, ...)
 	while ((chars_displayed = *format++) != '\0')
 	{
 		if (new_char != '\0')
-			our_putchar(present);
+			_putchar(present);
 			chars_displayed++;
+	}
 		else
 		{
 			new_char = *format++;
@@ -37,14 +38,13 @@ int _printf(const char *format, ...)
 					}
 					break;
 				case '%':
-					our_putchar('%');
+					_putchar('%');
 					chars_displayed++;
 					break;
 				default:
 					break;
 			}
 		}
-	}
 	va_end(argu);
 	return (chars_displayed);
 }
