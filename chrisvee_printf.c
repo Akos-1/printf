@@ -8,17 +8,20 @@
 int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
-	char present, arg, new_char, *st;
+	char arg, new_char, *st;
+	char present;
+
 	va_list argu;
 
 	va_start(argu, format);
 
-	while ((chars_displayed = *format++) != '\0')
+	while ((present = *format++) != '\0')
 	{
 		if (new_char != '\0')
+		{
 			_putchar(present);
 			chars_displayed++;
-	}
+		}
 		else
 		{
 			new_char = *format++;
@@ -26,25 +29,26 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					arg = (char)va_arg(argu, int);
-					putchar(arg);
+					_putchar(arg);
 					chars_displayed++;
 					break;
 				case 's':
 					st = va_arg(argu, char*);
 					while (*st != '\0')
 					{
-						putchar(*st++);
+						_putchar(*st++);
 						chars_displayed++;
 					}
 					break;
 				case '%':
-					putchar('%');
+					_putchar('%');
 					chars_displayed++;
 					break;
 				default:
 					break;
 			}
 		}
+	}
 	va_end(argu);
 	return (chars_displayed);
 }
