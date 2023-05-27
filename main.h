@@ -6,6 +6,6 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-int our_putchar(char c);
+int _putchar(char c);
 
 #endif
