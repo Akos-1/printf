@@ -31,8 +31,6 @@ int _printf(const char *format, ...)
 			else if (new_char == 's')
 			{
 				st = va_arg(argu, char*);
-				if (st == NULL)
-					st = "(nil)";
 				while (*st != '\0')
 				{
 					write_char(*st++);
