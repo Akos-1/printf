@@ -9,7 +9,6 @@
 int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
-	char present;
 	va_list argu;
 
 	va_start(argu, format);
