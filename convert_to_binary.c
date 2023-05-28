@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 				while (write_char(*(char *)va_arg(argu, char *)))
 					chars_displayed++;
 			else if (specifier == 'd' || specifier == 'i')
-				chars_displayed += print_integer(va_arg(argu, int));
+				chars_displayed += write_char(va_arg(argu, int));
 			else if (specifier == 'b')
 				chars_displayed += print_binary(va_arg(argu, unsigned int));
 			else if (specifier == '%')
@@ -47,45 +47,28 @@ int _printf(const char *format, ...)
 
 int print_binary(unsigned int num)
 {
+	int binary_dig[32];
+	int y, x = 0;
+	int chars_displayed = 0;
+
 	if (num == 0)
 	{
 		write_char('0');
 		return (1);
 	}
-
-	int binary_dig[32];
-	int x = 0;
-
 	while (num > 0)
 	{
 		binary_dig[x++] = num % 2;
 		num /= 2;
 	}
 
-	int chars_displayed = 0;
 
-	for (int y = x - 1; y >= 0; y--)
+	for (y = x - 1; y >= 0; y--)
 	{
 		write_char(binary_dig[y] + '0');
 		chars_displayed++;
 	}
 
-	int binary_dig[32];
-	int x = 0;
-
-	while (num > 0)
-	{
-		binary_dig[x++] = num % 2;
-	}
-	int chars_displayed = 0;
-
-	for (int y = x - 1; y >= 0; y--)
-	{
-		write_char(binary_dig[y] + '0');
-		chars_displayed++;
-	}
 	return (chars_displayed);
 }
-
-
 
