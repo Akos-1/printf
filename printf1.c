@@ -10,53 +10,32 @@ int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
 	char present;
-
 	va_list argu;
 
 	va_start(argu, format);
-	while ((present = *format++) != '\0')
+
+	while (*format)
 	{
-		if (present == '%')
+		if (*format == '%')
 		{
-			char specifier = *format++;
+			char specifier = *(++format);
 
 			if (specifier == 'c')
-			{
-				char arg = (char)va_arg(argu, int);
-
-				write_char(arg);
-				chars_displayed++;
-			}
+				chars_displayed += write_char((char)va_arg(argu, int));
 			else if (specifier == 's')
-			{
-				char *st = va_arg(argu, char*);
-
-				while (*st != '\0')
-				{
-					write_char(*st++);
+				while (write_char(*(char *)va_arg(argu, char *)))
 					chars_displayed++;
-				}
-			}
 			else if (specifier == 'd' || specifier == 'i')
-			{
-				int arg = va_arg(argu, int);
-
-				chars_displayed += printf("%d", arg);
-			}
+				chars_displayed += printf("%d", va_arg(argu, int));
 			else if (specifier == '%')
-			{
-				write_char('%');
-				chars_displayed++;
-			}
+				chars_displayed += write_char('%');
 			else
-			{
-				write_char(present);
-				chars_displayed++;
-			}
+				chars_displayed += write_char(*format);
 		}
+		else
+			chars_displayed += write_char(*format);
+		format++;
 	}
 	va_end(argu);
-	return chars_displayed;
+	return (chars_displayed);
 }
-
-
