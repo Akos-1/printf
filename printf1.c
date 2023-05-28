@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include "main.h"
 /**
  * _printf - a function that displays output according to a format.
  * @format: a character string
@@ -21,7 +22,7 @@ int _printf(const char *format, ...)
 
 			if (specifier == 'c')
 			{
-				char arg = (char)va_argu(argu, int);
+				char arg = (char)va_arg(argu, int);
 
 				write_char(arg);
 				chars_displayed++;
@@ -29,11 +30,11 @@ int _printf(const char *format, ...)
 			else if (specifier == 's')
 			{
 				char *st = va_arg(argu, char*);
-				
+
 				while (*st != '\0')
 				{
 					write_char(*st++);
-					chars_displayed++
+					chars_displayed++;
 				}
 			}
 			else if (specifier == 'd' || specifier == 'i')
@@ -44,7 +45,7 @@ int _printf(const char *format, ...)
 			}
 			else if (specifier == '%')
 			{
-				write_char('%);
+				write_char('%');
 				chars_displayed++;
 			}
 			else
