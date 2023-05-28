@@ -11,43 +11,43 @@
 int _printf(const char *format, ...)
 {
 	int chars_displayed = 0;
-	char new_char, st;
+	char present, arg, new_char, *st;
 	va_list argu;
 
-
-	if (format == NULL)
-		return (-1);
-
 	va_start(argu, format);
-	while (*format != '\0')
+	while ((present = *format++) != '\0')
 	{
-		if (*format == '%')
+		if (new_char != '\0')
+		{
+			write_char(present);
+			chars_displayed++;
+		}
+		else
 		{
 			new_char = *format++;
-			switch (new_char)
+			if (new_char == 'c')
 			{
-				case 'c':
-					int x = va_arg(argu, int);
-
-					chars_displayed += write_char(x);
-					break;
-				case 's':
-					char st = va_arg(argu, int);
-
-					chars_displayed += fwrite(char, 1, strlen(st), stdout);
-					break;
-				case '%':
-					chars_displayed += write_char('%');
-					break;
+				arg = (char)va_arg(argu, int);
+				write_char(arg);
+				chars_displayed++;
 			}
-			else
+			else if (new_char == 's')
 			{
-				chars_displayed += write_char(*format);
+				st = va_arg(argu, char*);
+				while (*st != '\0')
+				{
+					write_char(*st++);
+					chars_displayed++;
+				}
 			}
+			else if (new_char == '%')
+			{
+				write_char('%');
+				chars_displayed++;
+			}
+
 		}
-		format++;
 	}
 	va_end(argu);
 	return (chars_displayed);
 }
-
