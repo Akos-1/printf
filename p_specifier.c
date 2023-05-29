@@ -31,9 +31,7 @@ int _printf(const char *format, ...)
 				char *str = va_arg(argu, char*);
 
 				while (*str)
-				{
 					write_char(*str++, &chars_displayed);
-				}
 			}
 			else if (*format == 'd' || *format == 'i' || *format == 'u'
 					|| *format == 'o' || *format == 'x' || *format == 'X' || *format == 'p')
@@ -49,9 +47,6 @@ int _printf(const char *format, ...)
 
 		format++;
 	}
-
 	va_end(argu);
-
 	return (chars_displayed);
 }
-

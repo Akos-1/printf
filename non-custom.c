@@ -19,12 +19,6 @@ int _printf(const char *format, ...)
 		{
 			format++;
 
-			int p_flag = (*format == '+');
-			int s_flag = (*format == ' ');
-
-			if (p_flag || s_flag)
-				format++;
-
 			if (*format == 'c' || *format == '%')
 			{
 				write_char((char)va_arg(argu, int));
@@ -43,17 +37,11 @@ int _printf(const char *format, ...)
 			else if (*format == 'd' || *format == 'i' || *format == 'u'
 					|| *format == 'o' || *format == 'x' || *format == 'X' || *format == 'p')
 			{
-				if (plus_flag)
+				if (*format == '+' || *format == ' ')
 				{
-					write_char('+');
+					write_char(*format);
 					chars_displayed++;
 				}
-				else if (space_flag)
-				{
-					write_char(' ');
-					chars_displayed++;
-				}
-
 				chars_displayed += printf("%", *format);
 				va_arg(argu, int);
 			}
@@ -63,11 +51,8 @@ int _printf(const char *format, ...)
 			write_char(*format);
 			chars_displayed++;
 		}
-
 		format++;
 	}
-
 	va_end(argu);
-
 	return (chars_displayed);
 }

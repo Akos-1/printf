@@ -25,20 +25,19 @@ void write_buffer(const char *buffer, int size, int *count)
  */
 int _printf(const char *format, ...)
 {
-	int chars_displayed = 0;
+	int chars_displayed, buffer_index = 0;
 	va_list argu;
 	char buffer[BUFFER_SIZE];
-	int buffer_index = 0;
 
 	va_start(argu, format);
 
 	while (*format)
 	{
 		char specifier = *format++;
+
 		if (*format == '%')
 		{
 			format++;
-
 			if (specifier == 'c')
 				buffer[buffer_index++] = (char)va_arg(argu, int);
 			else if (specifier == 's')
@@ -63,9 +62,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	if (buffer_index > 0)
-	{
 		write_buffer(buffer, buffer_index, &chars_displayed);
-	}
 	va_end(argu);
 	return (chars_displayed);
 }
