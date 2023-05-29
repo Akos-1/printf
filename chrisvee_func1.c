@@ -1,13 +1,13 @@
 #include "main.h"
 /**
-* print_unsigned - Prints an unsigned number
- * @typ: List of arguments
- * @buffer: Buffer array to handle print
- * @flg:  Calculates active flags
- * @wid: get width
+* print_unsigned - displays an unsigned number
+ * @typ: arguments list
+ * @buffer: inputed Buffer array 
+ * @flg: active flags
+ * @wid: width
  * @pr: Precision specification
  * @size: Size specifier
- * Return: Number of chars printed.
+ * Return: Number of chars displayed.
  */
 int print_unsigned(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
@@ -35,14 +35,14 @@ int print_unsigned(va_list typ, char buffer[],
 
 /************* PRINT UNSIGNED NUMBER IN OCTAL  ****************/
 /**
- * print_oct - Prints an unsigned number in octal notation
- * @typ: List of arguments
- * @buffer: Buffer array to handle print
- * @flg:  Calculates active flags
- * @wid: get width
+ * print_oct - displays an unsigned number in octal notation
+ * @typ: arguments list
+ * @buffer: inputed Buffer array 
+ * @flg: active flags
+ * @wid: width
  * @pr: Precision specification
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of chars displayed
  */
 int print_oct(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
@@ -114,16 +114,16 @@ int print_hexa_upp(va_list typ, char buffer[],
 /************** PRINT HEXX NUM IN LOWER OR UPPER **************/
 /**
  * print_hexa - Prints a hexadecimal number in lower or upper
- * @typ: List of arguments
- * @map: Array of values to map the number to
- * @buffer: Buffer array to handle print
- * @flg:  Calculates active flags
+ * @typ: arguments list
+ * @map: Array of values to be mapped to
+ * @buffer: inputed Buffer array 
+ * @flg: active flags
  * @flg_ch: Calculates active flags
- * @wid: get width
+ * @wid: width
  * @pr: Precision specification
  * @size: Size specifier
  * @size: Size specification
- * Return: Number of chars printed
+ * Return: Number of chars displayed
  */
 int print_hexa(va_list typ, char map[], char buffer[],
 	int flg, char flg_ch, int wid, int pr, int size)
