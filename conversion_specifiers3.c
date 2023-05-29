@@ -23,18 +23,24 @@ int _printf(const char *format, ...)
 			format++;
 
 			if (specifier == 'c')
-				chars_displayed += putchar((char)va_arg(argu, int));
+				chars_displayed += write_char(va_arg(argu, int));
 			else if (specifier == 's')
-				while (putchar(*(char *)va_arg(argu, char *)))
-					chars_displayed++;
+			{
+				const char *str = va_arg(argu, const char *);
+
+				while (*str)
+				{
+					chars_displayed += write_char(*str++);
+				}
+			}
 			else if (specifier == 'd' || specifier == 'i' || specifier == 'u' ||
 					specifier == 'o' || specifier == 'x' || specifier == 'X')
-				chars_displayed += printf("%%%c", specifier);
+				chars_displayed += write_char(specifier);
 			else if (specifier == '%')
-				chars_displayed += putchar('%');
+				chars_displayed += write_char('%');
 		}
 		else
-			chars_displayed += putchar(*format++);
+			chars_displayed += write_char(*format++);
 	}
 
 	va_end(argu);

@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include "main.h"
 #define BUFFER_SIZE 1024
+#include <unistd>
 /**
  * write_buffer -  local buffer of 1024 chars in order to call write
  * @size: size of buffer
@@ -25,7 +26,7 @@ void write_buffer(const char *buffer, int size, int *count)
  */
 int _printf(const char *format, ...)
 {
-	int chars_displayed, buffer_index = 0;
+	int chars_displayed = 0, buffer_index = 0;
 	va_list argu;
 	char buffer[BUFFER_SIZE];
 
@@ -47,9 +48,17 @@ int _printf(const char *format, ...)
 				while (*str)
 					buffer[buffer_index++] = *str++;
 			}
-			else if (specifier == 'd' || specifier == 'i' || specifier == 'u' ||
-					specifier == 'o' || specifier == 'x' || specifier == 'X')
-				chars_displayed += printf("%%%c", specifier);
+			else if (strchr("diuoxX", specifier) != NULL)
+			{
+				int n = va_arg(argu, int);
+
+				if (buffer_index < BUFFER_SIZE - 2)
+				{
+					buffer[buffer_index++] = '%';
+					buffer[buffer_index++] = specifier;
+				}
+				chars_displayed += printf("%.*s", 2, buffer + buffer_index - 2);
+			}
 			else if (specifier == '%')
 				buffer[buffer_index++] = '%';
 		}

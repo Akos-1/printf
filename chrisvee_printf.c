@@ -12,38 +12,37 @@ int _printf(const char *format, ...)
 	va_list argu;
 
 	va_start(argu, format);
-	while ((present = *format++) != '\0')
+	while (*format)
 	{
-		if (new_char != '\0')
+		if (*format == '%' && *(++format))
 		{
-			write_char(present);
-			chars_displayed++;
-		}
-		else
-		{
-			new_char = *format++;
-			if (new_char == 'c')
+			if (*format == 'c')
 			{
-				arg = va_arg(argu, int);
-				write_char(arg);
+				write_char(va_arg(argu, int));
 				chars_displayed++;
 			}
-			else if (new_char == 's')
+			else if (*format == 's')
 			{
-				st = va_arg(argu, char*);
-				while (*st != '\0')
+				char *str = va_arg(argu, char*);
+
+				while (*str)
 				{
-					write_char(*st++);
+					write_char(*str++);
 					chars_displayed++;
 				}
 			}
-			else if (new_char == '%')
+			else if (*format == '%')
 			{
 				write_char('%');
 				chars_displayed++;
 			}
-
 		}
+		else
+		{
+			write_char(*format);
+			chars_displayed++;
+		}
+		format++;
 	}
 	va_end(argu);
 	return (chars_displayed);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "main.h"
+#include <unistd.h>
 /**
  * _printf - a function that displays output according to a format.
  * @format: a character string
@@ -34,16 +35,17 @@ int _printf(const char *format, ...)
 					chars_displayed++;
 				}
 			}
-			else if (*format == 'd' || *format == 'i' || *format == 'u'
-					|| *format == 'o' || *format == 'x' || *format == 'X' || *format == 'p')
+			else if (strchr("diuoxXp", *format) != NULL)
 			{
 				if (*format == '+' || *format == ' ')
 				{
 					write_char(*format);
 					chars_displayed++;
 				}
-				chars_displayed += printf("%", *format);
-				va_arg(argu, int);
+				else
+				{
+				chars_displayed += write_char(va_arg(argu, int));
+				}
 			}
 		}
 		else

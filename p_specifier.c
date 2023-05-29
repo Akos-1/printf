@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "main.h"
+#include <string.h>
 #define BUFFER_SIZE 1024
 /**
  * _printf - a function that displays output according to a format
@@ -33,11 +34,10 @@ int _printf(const char *format, ...)
 				while (*str)
 					write_char(*str++, &chars_displayed);
 			}
-			else if (*format == 'd' || *format == 'i' || *format == 'u'
-					|| *format == 'o' || *format == 'x' || *format == 'X' || *format == 'p')
+			else if (strchr("diuoxXp", *format) == NULL)
 			{
-				chars_displayed += printf("%", *format);
-				va_arg(argu, int)
+				write_char(*format, &chars_displayed);
+				va_arg(argu, int);
 			}
 		}
 		else
