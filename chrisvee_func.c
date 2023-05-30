@@ -106,7 +106,7 @@ int print_int(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
 {
 	int i = BUFFER_SIZE - 2;
-	int is_negative = 0;
+	int is_neg = 0;
 	long int n = va_arg(typ, long int);
 	unsigned long int num;
 
@@ -121,7 +121,7 @@ int print_int(va_list typ, char buffer[],
 	if (n < 0)
 	{
 		num = (unsigned long int)((-1) * n);
-		is_negative = 1;
+		is_neg = 1;
 	}
 
 	while (num > 0)
@@ -131,8 +131,8 @@ int print_int(va_list typ, char buffer[],
 	}
 
 	i++;
+	return (write_num(is_neg, i, buffer, flg, wid, pr, size));
 
-	return (write_numb(is_dig, int, buffer, flg, wid, pr, size));
 }
 
 /**
