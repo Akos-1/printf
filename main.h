@@ -34,42 +34,41 @@ struct frt
  * @frt: The format.
  * @fr_t: The function associated.
  */
-typedef struct frt frt_t;
+typedef (struct frt frt_t);
 
 int _printf(const char *format, ...);
 int handle_print(const char *frt, int *i,
-		va_list argu, char buffer[], int flg, int wid, int pr, int size);
-
+		va_list argu, char buffer[], int flg, int wid, int pr, int size);}
 /****************** FUNCTIONS ******************/
 
 /* Funtions to print chars and strings */
 int print_char(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 int print_str(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int print_per(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 
 /* Functions to print numbers */
 int print_int(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int print_binary(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int print_unsigned(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int print_oct(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int print_hexadec(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int print_hexa_upp(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 
 int print_hexa(va_list typ, char map_to[],
@@ -81,7 +80,7 @@ int print_non_printable(va_list typ, char buffer[],
 
 /* Function to print memory address */
 int print_point(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 /* Functions to handle other specifiers */
 int get_flg(const char *format, int *a);
@@ -95,14 +94,14 @@ int print_rev(va_list typ, char buffer[],
 
 /*Function to print a string in rot 13*/
 int print_rot13str(va_list typ, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 /* width handler */
 int write_char(char c, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int write_num(int is_neg, int ind, char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 int write_numb(int ind, char bff[], int flg, int wid, int pre,
 		int len, char padd, char extra_char);
@@ -111,7 +110,7 @@ int write_point(char buffer[], int ind, int len,
 
 int write_unsgnd(int is_neg, int ind,
 		char buffer[],
-		int flg, int wid int pr, int size);
+		int flg, int wid, int pr, int size);
 
 
 /****************** UTILS ******************/

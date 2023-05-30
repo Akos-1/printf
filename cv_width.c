@@ -13,7 +13,7 @@ int hand_wid(const char *format, int *list_p, va_list argu)
 
 	for (present = *list_p + 1; format[present] != '\0'; present++)
 	{
-		if (is_digit(format[present]))
+		if (is_dig(format[present]))
 		{
 			wid *= 10;
 			wid += format[present] - '0';

@@ -46,8 +46,8 @@ int print_point(va_list typ, char buffer[],
 
 	ind++;
 
-	return (write_pointer(buffer, ind, length,
-				width, flags, padd, extra_c, padd_start));
+	return (write_point(buffer, ind, length,
+				wid, flg, padd, extra_char, padd_start));
 }
 
 /************************* PRINT NON PRINTABLE *************************/

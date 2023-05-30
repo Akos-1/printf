@@ -54,7 +54,6 @@ int write_char(char c, char buffer[],
  * @wid: get width.
  * @pr: precision specifier
  * @size: Size specifier
- *
  * Return: Number of chars printed.
  */
 int write_num(int is_neg, int ind, char buffer[],
@@ -151,10 +150,10 @@ int write_numb(int ind, char buffer[],
  */
 int write_unsgnd(int is_neg, int ind,
 		char buffer[],
-		int flg, int wid, int pre, int size)
+		int flg, int wid, int len, int pre, int size)
 {
 	/* The number is stored at the bufer's right and starts at position i */
-	int length = BUFFER_SIZE - ind - 1, a = 0;
+	int len = BUFFER_SIZE - ind - 1, a = 0;
 	char padd = ' ';
 
 	UNUSED(is_neg);
@@ -177,7 +176,7 @@ int write_unsgnd(int is_neg, int ind,
 
 	if (wid > len)
 	{
-		for (a = 0; a < width - len; a++)
+		for (a = 0; a < wid - len; a++)
 			buffer[a] = padd;
 
 		buffer[a] = '\0';
