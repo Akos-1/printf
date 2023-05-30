@@ -1,6 +1,5 @@
 #include "main.h"
 
-/************************* WRITE HANDLE *************************/
 /**
  * write_char - Prints a string
  * @c: char types.
@@ -24,14 +23,14 @@ int write_char(char c, char buffer[],
 	if (flg & F_ZERO)
 		padd = '0';
 
-	buffer[i++] = c;
-	buffer[i] = '\0';
+	buffer[a++] = c;
+	buffer[a] = '\0';
 
 	if (wid > 1)
 	{
 		buffer[BUFFER_SIZE - 1] = '\0';
 		for (a = 0; a < wid - 1; a++)
-			buffer[BUFFER_SIZE - i - 2] = padd;
+			buffer[BUFFER_SIZE - a - 2] = padd;
 
 		if (flg & F_MINUS)
 			return (write(1, &buffer[0], 1) +
@@ -44,7 +43,6 @@ int write_char(char c, char buffer[],
 	return (write(1, &buffer[0], 1));
 }
 
-/************************* WRITE NUMBER *************************/
 /**
  * write_num - Prints a string
  * @is_neg: List of arguments
@@ -73,8 +71,8 @@ int write_num(int is_neg, int ind, char buffer[],
 	else if (flg & F_SPACE)
 		extra_char = ' ';
 
-	return (write_numb(ind, buffer, flags, width, precision,
-				len, padd, extra_ch));
+	return (write_numb(ind, buffer, flg, wid, pr,
+				len, padd, extra_char));
 }
 
 /**
@@ -152,38 +150,37 @@ int write_unsgnd(int is_neg, int ind,
 		char buffer[],
 		int flg, int wid, int len, int pre, int size)
 {
-	/* The number is stored at the bufer's right and starts at position i */
-	int len = BUFFER_SIZE - ind - 1, a = 0;
+	int le = BUFFER_SIZE - ind - 1, a = 0;
 	char padd = ' ';
 
 	UNUSED(is_neg);
 	UNUSED(size);
 
 	if (pre == 0 && ind == BUFFER_SIZE - 2 && buffer[ind] == '0')
-		return (0); /* printf(".0d", 0)  no char is printed */
+		return (0);
 
-	if (pre > 0 && pre < len)
+	if (pre > 0 && pre < le)
 		padd = ' ';
 
-	while (pre > len)
+	while (pre > le)
 	{
 		buffer[--ind] = '0';
-		len++;
+		le++;
 	}
 
 	if ((flg & F_ZERO) && !(flg & F_MINUS))
 		padd = '0';
 
-	if (wid > len)
+	if (wid > le)
 	{
-		for (a = 0; a < wid - len; a++)
+		for (a = 0; a < wid - le; a++)
 			buffer[a] = padd;
 
 		buffer[a] = '\0';
 
-		if (flg & F_MINUS) /* Asign extra char to left of buffer [buffer>padd]*/
+		if (flg & F_MINUS)
 		{
-			return (write(1, &buffer[ind], len) + write(1, &buffer[0], a));
+			return (write(1, &buffer[ind], le) + write(1, &buffer[0], a));
 		}
 		else /* Asign extra char to left of padding [padd>buffer]*/
 		{
@@ -191,7 +188,7 @@ int write_unsgnd(int is_neg, int ind,
 		}
 	}
 
-	return (write(1, &buffer[ind], len));
+	return (write(1, &buffer[ind], le));
 }
 
 /**

@@ -2,20 +2,20 @@
 /**
 * print_unsigned - displays an unsigned number
  * @typ: arguments list
- * @buffer: inputed Buffer array 
+ * @buffer: inputed Buffer array
  * @flg: active flags
  * @wid: width
  * @pr: Precision specification
  * @size: Size specifier
  * Return: Number of chars displayed.
  */
-int print_unsigned(va_list typ, char buffer[],
+int print_unsgnd(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int num = va_arg(typ, unsigned long int);
 
-	num = convert_size_unsgnd(num, size);
+	num = conv_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[i--] = '0';
@@ -30,14 +30,13 @@ int print_unsigned(va_list typ, char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flg, wid, pr, size));
+	return (wr_unsigned(0, i, buffer, flg, wid, pr, size));
 }
 
-/************* PRINT UNSIGNED NUMBER IN OCTAL  ****************/
 /**
  * print_oct - displays an unsigned number in octal notation
  * @typ: arguments list
- * @buffer: inputed Buffer array 
+ * @buffer: inputed Buffer array
  * @flg: active flags
  * @wid: width
  * @pr: Precision specification
@@ -54,7 +53,7 @@ int print_oct(va_list typ, char buffer[],
 
 	UNUSED(wid);
 
-	num = convert_size_unsgnd(num, size);
+	num = conv_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[a--] = '0';
@@ -72,10 +71,9 @@ int print_oct(va_list typ, char buffer[],
 
 	a++;
 
-	return (write_unsgnd(0, a, buffer, flg, wid, pr, size));
+	return (wr_unsigned(0, a, buffer, flg, wid, pr, size));
 }
 
-/************** PRINT UNSIGNED NUMBER IN HEXADECIMAL **************/
 /**
  * print_hexadec - Prints an unsigned number in hexadecimal notation
  * @typ: List of arguments
@@ -89,11 +87,10 @@ int print_oct(va_list typ, char buffer[],
 int print_hexadec(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
 {
-	return (print_hexa(types, "0123456789abcdef", buffer,
+	return (print_hexa(typ, "0123456789abcdef", buffer,
 		flg, 'x', wid, pr, size));
 }
 
-/************* PRINT UNSIGNED NUMBER IN UPPER HEXADECIMAL **************/
 /**
  * print_hexa_upp - Prints an unsigned number in upper hexadecimal notation
  * @typ: List of arguments
@@ -107,16 +104,15 @@ int print_hexadec(va_list typ, char buffer[],
 int print_hexa_upp(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
 {
-	return (print_hexa(types, "0123456789ABCDEF", buffer,
+	return (print_hexa(typ, "0123456789ABCDEF", buffer,
 		flg, 'X', wid, pr, size));
 }
 
-/************** PRINT HEXX NUM IN LOWER OR UPPER **************/
 /**
  * print_hexa - Prints a hexadecimal number in lower or upper
  * @typ: arguments list
  * @map: Array of values to be mapped to
- * @buffer: inputed Buffer array 
+ * @buffer: inputed Buffer array
  * @flg: active flags
  * @flg_ch: Calculates active flags
  * @wid: width
@@ -134,7 +130,7 @@ int print_hexa(va_list typ, char map[], char buffer[],
 
 	UNUSED(wid);
 
-	num = convert_size_unsgnd(num, size);
+	num = conv_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[c--] = '0';
@@ -155,6 +151,6 @@ int print_hexa(va_list typ, char map[], char buffer[],
 
 	c++;
 
-	return (write_unsgnd(0, c, buffer, flg, wid, pr, size));
+	return (wr_unsigned(0, c, buffer, flg, wid, pr, size));
 }
 

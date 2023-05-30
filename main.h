@@ -27,18 +27,21 @@ struct frt
 {
 	char frt;
 	int (*fun)(va_list, char[], int, int, int, int);
-}
+};
 
 /**
- * typedef struct frt frt_t - Struct op
- * @frt: The format.
- * @fr_t: The function associated.
+ * struct  funct - Struct op
+ * @fr_t: The format.
+ * @funct: The function associated.
  */
-typedef (struct frt frt_t);
-
+typedef struct funct
+{
+	char fr_t;
+	int (*funct)(va_list, char[], int, int, int, int);
+} funct;
 int _printf(const char *format, ...);
 int handle_print(const char *frt, int *i,
-		va_list argu, char buffer[], int flg, int wid, int pr, int size);}
+		va_list argu, char buffer[], int flg, int wid, int pr, int size);
 /****************** FUNCTIONS ******************/
 
 /* Funtions to print chars and strings */
@@ -55,10 +58,10 @@ int print_per(va_list typ, char buffer[],
 int print_int(va_list typ, char buffer[],
 		int flg, int wid, int pr, int size);
 
-int print_binary(va_list typ, char buffer[],
+int print_bin(va_list typ, char buffer[],
 		int flg, int wid, int pr, int size);
 
-int print_unsigned(va_list typ, char buffer[],
+int print_unsgnd(va_list typ, char buffer[],
 		int flg, int wid, int pr, int size);
 
 int print_oct(va_list typ, char buffer[],
@@ -110,8 +113,9 @@ int write_point(char buffer[], int ind, int len,
 
 int write_unsgnd(int is_neg, int ind,
 		char buffer[],
-		int flg, int wid, int pr, int size);
-
+		int flg, int wid, int len, int pr, int size);
+int wr_unsigned(int is_neg, int ind, char buffer[], int flg, int wid, int pr,
+		int size);
 
 /****************** UTILS ******************/
 int is_print(char);

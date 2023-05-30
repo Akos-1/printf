@@ -14,19 +14,19 @@
 int handle_print(const char *frt, int *ind, va_list argu, char buffer[],
 	int flg, int wid, int pr, int size)
 {
-	int a, u_len = 0, displayed_chars = -1;
-	funct frt_types[] = {
-		{'c', print_char}, {'s', print_string}, {'%', print_per},
-		{'i', print_int}, {'d', print_int}, {'b', print_binary},
-		{'u', print_unsigned}, {'o', print_oct}, {'x', print_hexadec},
+	int a, u_len = 0, chars_displayed = -1;
+	funct frt_typ[] = {
+		{'c', print_char}, {'s', print_str}, {'%', print_per},
+		{'i', print_int}, {'d', print_int}, {'b', print_bin},
+		{'u', print_unsgnd}, {'o', print_oct}, {'x', print_hexadec},
 		{'X', print_hexa_upp}, {'p', print_point}, {'S', print_non_printable},
 		{'r', print_rev}, {'R', print_rot13str}, {'\0', NULL}
 	};
-	for (i = 0; frt_typ[i].frt != '\0'; i++)
-		if (frt[*ind] == frt_typ[i].frt)
-			return (frt_typ[i].fun(argu, buffer, flg, wid, pr, size));
+	for (a = 0; frt_typ[a].fr_t != '\0'; a++)
+		if (frt[*ind] == frt_typ[a].fr_t)
+			return (frt_typ[a].funct(argu, buffer, flg, wid, pr, size));
 
-	if (frt_typ[i].frt == '\0')
+	if (frt_typ[a].fr_t == '\0')
 	{
 		if (frt[*ind] == '\0')
 			return (-1);

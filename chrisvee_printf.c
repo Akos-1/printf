@@ -19,14 +19,13 @@ int _printf(const char *format, ...)
 
 	va_start(argu, format);
 
-	for (a = 0; format && format[a] != '\0'; i++)
+	for (a = 0; format && format[a] != '\0'; a++)
 	{
 		if (format[a] != '%')
 		{
-			buffer[buff_ind++] = format[i];
+			buffer[buff_ind++] = format[a];
 			if (buff_ind == BUFFER_SIZE)
 				print_buffer(buffer, &buff_ind);
-			/* write(1, &format[a], 1);*/
 			chars_displayed++;
 		}
 		else
@@ -53,7 +52,7 @@ int _printf(const char *format, ...)
 }
 
 /**
- * print_buffer - diplays the contents 
+ * print_buffer - diplays the contents
  * @buffer: Array of chars
  * @buff_ind: Index at which to add next char, represents the length.
  */

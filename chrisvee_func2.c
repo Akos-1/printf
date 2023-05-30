@@ -13,8 +13,8 @@ int print_point(va_list typ, char buffer[],
 		int flg, int wid, int pr, int size)
 {
 	char extra_char = 0, padd = ' ';
-	int ind = BUFFER_SIZE - 2, length = 2,
-	    padd_start = 1; /* length=2, for '0x' */
+	int ind = BUFFER_SIZE - 2, len = 2,
+	    padd_start = 1;
 	unsigned long num_addrs;
 	char map[] = "0123456789abcdef";
 	void *addrs = va_arg(typ, void *);
@@ -46,11 +46,10 @@ int print_point(va_list typ, char buffer[],
 
 	ind++;
 
-	return (write_point(buffer, ind, length,
+	return (write_point(buffer, ind, len,
 				wid, flg, padd, extra_char, padd_start));
 }
 
-/************************* PRINT NON PRINTABLE *************************/
 /**
  * print_non_printable - Prints ascii codes in hexa of non printable chars
  * @typ: arguments list
@@ -77,10 +76,10 @@ int print_non_printable(va_list typ, char buffer[],
 
 	while (st[a] != '\0')
 	{
-		if (is_printable(str[a]))
+		if (is_print(st[a]))
 			buffer[a + offset] = st[a];
 		else
-			offset += append_hexa_code(str[a], buffer, a + offset);
+			offset += append_hexa_code(st[a], buffer, a + offset);
 
 		a++;
 	}
@@ -181,4 +180,4 @@ int print_rot13str(va_list typ, char buffer[],
 		}
 	}
 	return (count);
-
+}

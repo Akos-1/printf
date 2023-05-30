@@ -20,7 +20,7 @@ int hand_pr(const char *format, int *list_p, va_list argu)
 
 	for (current += 1; format[current] != '\0'; current++)
 	{
-		if (is_digit(format[current]))
+		if (is_dig(format[current]))
 		{
 			pr *= 10;
 			pr += format[current] - '0';
@@ -37,6 +37,6 @@ int hand_pr(const char *format, int *list_p, va_list argu)
 
 	*list_p = current - 1;
 
-	return (precision);
+	return (pr);
 }
 
