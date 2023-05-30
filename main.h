@@ -86,10 +86,10 @@ int print_point(va_list typ, char buffer[],
 		int flg, int wid, int pr, int size);
 
 /* Functions to handle other specifiers */
-int get_flg(const char *format, int *a);
-int get_wid(const char *format, int *a, va_list argu);
-int get_pr(const char *format, int *a, va_list argu);
-int get_size(const char *format, int *a);
+int hand_flg(const char *format, int *a);
+int hand_wid(const char *format, int *a, va_list argu);
+int hand_pr(const char *format, int *a, va_list argu);
+int hand_size(const char *format, int *a);
 
 /*Function to print string in reverse*/
 int print_rev(va_list typ, char buffer[],

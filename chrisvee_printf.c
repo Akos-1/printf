@@ -31,10 +31,10 @@ int _printf(const char *format, ...)
 		else
 		{
 			print_buffer(buffer, &buff_ind);
-			flg = get_flg(format, &a);
-			wid = get_wid(format, &a, argu);
-			pr = get_pr(format, &a, argu);
-			size = get_size(format, &a);
+			flg = hand_flg(format, &a);
+			wid = hand_wid(format, &a, argu);
+			pr = hand_pr(format, &a, argu);
+			size = hand_size(format, &a);
 			++a;
 			displayed = handle_print(format, &a, argu, buffer,
 					flg, wid, pr, size);

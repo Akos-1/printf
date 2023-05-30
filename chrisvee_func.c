@@ -136,7 +136,7 @@ int print_int(va_list typ, char buffer[],
 }
 
 /**
- * print_binary - Prints an unsigned number
+ * print_bin - Prints an unsigned number
  * @typ: List of arguments
  * @buffer: inputed Buffer array
  * @flg: active flags
@@ -145,7 +145,7 @@ int print_int(va_list typ, char buffer[],
  * @size: Size specifier
  * Return: Numbers of char displayed.
  */
-int print_binary(va_list typ, char buffer[],
+int print_bin(va_list typ, char buffer[],
 	int flg, int wid, int pr, int size)
 {
 	unsigned int x, y, a, sum;
