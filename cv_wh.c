@@ -143,12 +143,11 @@ int write_numb(int ind, char buffer[],
  * @wid: Width specifier
  * @pre: Precision specifier
  * @size: Size specifier
- * @len: length
  * Return: Number of written chars.
  */
 int write_unsgnd(int is_neg, int ind,
 		char buffer[],
-		int flg, int wid, int len, int pre, int size)
+		int flg, int wid, int pre, int size)
 {
 	int le = BUFFER_SIZE - ind - 1, a = 0;
 	char padd = ' ';
@@ -184,7 +183,7 @@ int write_unsgnd(int is_neg, int ind,
 		}
 		else /* Asign extra char to left of padding [padd>buffer]*/
 		{
-			return (write(1, &buffer[0], a) + write(1, &buffer[ind], len));
+			return (write(1, &buffer[0], a) + write(1, &buffer[ind], le));
 		}
 	}
 

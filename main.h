@@ -113,9 +113,7 @@ int write_point(char buffer[], int ind, int len,
 
 int write_unsgnd(int is_neg, int ind,
 		char buffer[],
-		int flg, int wid, int len, int pr, int size);
-int wr_unsigned(int is_neg, int ind, char buffer[], int flg, int wid, int pr,
-		int size);
+		int flg, int wid, int pr, int size);
 
 /****************** UTILS ******************/
 int is_print(char);
