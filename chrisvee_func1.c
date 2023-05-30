@@ -71,7 +71,7 @@ int print_oct(va_list typ, char buffer[],
 
 	a++;
 
-	return (wr_unsigned(0, a, buffer, flg, wid, pr, size));
+	return (wr_unsigned (0, a, buffer, flg, wid, pr, size));
 }
 
 /**
@@ -151,6 +151,6 @@ int print_hexa(va_list typ, char map[], char buffer[],
 
 	c++;
 
-	return (wr_unsigned(0, c, buffer, flg, wid, pr, size));
+	return (wr_unsigned (0, c, buffer, flg, wid, pr, size));
 }
 

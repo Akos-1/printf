@@ -30,7 +30,7 @@ struct frt
 };
 
 /**
- * struct  funct - Struct op
+ * struct funct - Struct op
  * @fr_t: The format.
  * @funct: The function associated.
  */
