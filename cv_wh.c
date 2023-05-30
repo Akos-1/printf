@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * write_char - Prints a string
- * @c: char types.
+ * write_char - displays a string
+ * @c: character types.
  * @buffer: Buffer array to handle print
  * @flg:  Calculates active flags.
  * @wid: get width.

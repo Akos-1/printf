@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * is_print - checks if a character can be printed
- * @a: Char to be checked.
+ * is_print - checks the characted to be printed
+ * @a: inputed character.
  *
  * Return: 1 if c is printable, 0 otherwise
  */
@@ -15,10 +15,10 @@ int is_print(char a)
 }
 
 /**
- * append_hexa_code - Append asccii to buffer
+ * append_hexa_code - Append ascii to buffer
  * @buffer: Array of chars.
  * @x: Index at which to start appending.
- * @ascii: ASSCI CODE.
+ * @ascii: ASCII CODE.
  * Return: Always 3
  */
 int append_hexa_code(char ascii, char buffer[], int x)
@@ -38,8 +38,8 @@ int append_hexa_code(char ascii, char buffer[], int x)
 }
 
 /**
- * is_dig -checks if a char is a digit
- * @a: Character to be checked
+ * is_dig - checks digit as a character
+ * @a: inputed character
  *
  * Return: 1 if c is a digit, 0 otherwise
  */
@@ -52,11 +52,11 @@ int is_dig(char a)
 }
 
 /**
- * conv_size_num - Casts a number to the specified size
- * @num: Number
+ * conv_size_num - the specified size of a number is casted
+ * @num: inputed number
  * @size: Number indicating the type to be casted.
  *
- * Return: Casted value of num
+ * Return: num's casted value
  */
 long int conv_size_num(long int num, int size)
 {

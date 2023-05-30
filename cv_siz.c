@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * hand_size - the size to cast the argument to
+ * hand_size - the size of the argument
  * @format: a format  string
  * @list_p: arguments to be printed.
  *
